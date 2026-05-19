@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) return {};
   return {
     title: `${project.title} — Case Study`,
@@ -25,12 +26,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function CaseStudyPage({ params }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+export default async function CaseStudyPage({ params }) {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) notFound();
 
   // Find next project for bottom navigation
-  const currentIndex = PROJECTS.findIndex((p) => p.slug === params.slug);
+  const currentIndex = PROJECTS.findIndex((p) => p.slug === slug);
   const nextProject  = PROJECTS[(currentIndex + 1) % PROJECTS.length];
 
   return (
