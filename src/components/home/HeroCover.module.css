@@ -172,12 +172,47 @@
   border: 0.5px solid rgba(14, 13, 11, 0.2);
 }
 
+.discItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .discDot {
   width: 2px;
   height: 2px;
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.4;
+}
+
+/* ── Availability badge ───────────────────────────────── */
+.availBadge {
+  position: absolute;
+  top: 56px;
+  right: var(--page-pad);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.availDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
 }
 
 /* ── Bottom bar ──────────────────────────────────────── */

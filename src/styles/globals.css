@@ -1,3 +1,25 @@
+:root {
+  /* Fonts */
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono:  'Courier New', Courier, monospace;
+
+  /* Palette */
+  --paper:  #f5f3ee;
+  --ink:    #1a1410;
+  --muted:  #6b6560;
+  --border: rgba(14, 13, 11, 0.12);
+  --accent: #8b4a2a;
+
+  /* Layout */
+  --page-pad: clamp(20px, 4vw, 60px);
+
+  /* Z-index scale */
+  --z-bg:   1;
+  --z-mid:  10;
+  --z-ui:   20;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

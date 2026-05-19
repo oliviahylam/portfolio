@@ -24,7 +24,7 @@ export default function HeroCover() {
       <Portrait mouseX={mouse.x} mouseY={mouse.y} />
 
       {/* Layer 3 — editorial UI chrome */}
-      <div className={styles.chrome} aria-hidden="true">
+      <div className={styles.ui} aria-hidden="true">
 
         {/* Left vertical strip */}
         <aside className={styles.leftStrip}>
@@ -44,11 +44,11 @@ export default function HeroCover() {
         </aside>
 
         {/* Bottom centre: name + discipline tags */}
-        <div className={styles.bottomCentre}>
-          <p className={styles.nameTag}>
+        <div className={styles.bottomCenter}>
+          <p className={styles.namePlate}>
             {SITE.name} — {SITE.role}
           </p>
-          <div className={styles.disciplines}>
+          <div className={styles.disciplineRow}>
             {DISCIPLINES.map((d, i) => (
               <span key={d} className={styles.discItem}>
                 <span className={styles.discTag}>{d}</span>
@@ -66,12 +66,12 @@ export default function HeroCover() {
             <div className={styles.scrollTick} />
             Scroll
           </div>
-          <span className={styles.coords}>
+          <span className={styles.cursorXY}>
             {Math.round(mouse.raw.x * 100)}, {Math.round(mouse.raw.y * 100)}
           </span>
         </div>
 
-        {/* Availability badge — top-right under nav */}
+        {/* Availability badge */}
         {SITE.availability && (
           <div className={styles.availBadge}>
             <span className={styles.availDot} />
