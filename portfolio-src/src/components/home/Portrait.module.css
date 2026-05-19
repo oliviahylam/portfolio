@@ -1,0 +1,51 @@
+/* components/home/Portrait.module.css */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ringOuter {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(14, 13, 11, 0.08);
+}
+
+.ringInner {
+  position: absolute;
+  width: 268px;
+  height: 268px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(14, 13, 11, 0.06);
+}
+
+.disc {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: #e8e3d8;
+  will-change: transform;
+}
+
+.svg {
+  position: relative;
+  z-index: 2;
+  width: 200px;
+  height: 200px;
+  will-change: transform;
+}
+
+@media (max-width: 560px) {
+  .ringOuter { width: 240px; height: 240px; }
+  .ringInner { width: 208px; height: 208px; }
+  .disc       { width: 185px; height: 185px; }
+  .svg        { width: 155px; height: 155px; }
+}

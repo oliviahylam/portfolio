@@ -1,0 +1,275 @@
+/* Full-viewport cover — stacks three layers */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* ── UI chrome layer ─────────────────────────────────── */
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-ui);
+  pointer-events: none;
+}
+
+.ui > * {
+  pointer-events: all;
+}
+
+/* ── Navigation ──────────────────────────────────────── */
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--page-pad);
+}
+
+.navLogo {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.navLinks {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.navLink {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+
+.navLink:hover {
+  opacity: 1;
+}
+
+/* ── Left vertical strip ─────────────────────────────── */
+.leftStrip {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.stripLine {
+  width: 1px;
+  height: 32px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.stripText {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* ── Right strip: issue number ───────────────────────── */
+.rightStrip {
+  position: absolute;
+  right: var(--page-pad);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.issueNum {
+  font-family: var(--serif);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--ink);
+  opacity: 0.05;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.issueMeta {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 2.2;
+  text-align: right;
+  opacity: 0.7;
+}
+
+/* ── Bottom-center: name + discipline tags ───────────── */
+.bottomCenter {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.namePlate {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.disciplineRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.discTag {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.35;
+  padding: 4px 8px;
+  border: 0.5px solid rgba(14, 13, 11, 0.2);
+}
+
+.discDot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+/* ── Bottom bar ──────────────────────────────────────── */
+.bottomBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px var(--page-pad);
+  pointer-events: none;
+}
+
+.scrollHint {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scrollTick {
+  width: 1px;
+  height: 22px;
+  background: var(--muted);
+  opacity: 0.4;
+  animation: tickGrow 2s ease-in-out infinite;
+}
+
+@keyframes tickGrow {
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(1.5); }
+}
+
+.cursorXY {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  opacity: 0.35;
+}
+
+/* ── Scroll CTA ──────────────────────────────────────── */
+.scrollCta {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+  animation: float 3s ease-in-out infinite;
+}
+
+.scrollCta:hover {
+  opacity: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-4px); }
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navLinks {
+    gap: 14px;
+  }
+
+  .navLink {
+    font-size: 8px;
+  }
+
+  .leftStrip,
+  .rightStrip {
+    display: none;
+  }
+
+  .disciplineRow {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
