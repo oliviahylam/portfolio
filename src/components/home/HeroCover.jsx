@@ -1,13 +1,8 @@
-// components/home/HeroCover.jsx
-// The full-viewport hero "cover" section.
-// Combines: KineticBackground + Portrait + editorial UI chrome.
-// Mouse tracking is owned here and passed to children.
-
 'use client';
 
-import { useRef, useState } from 'react';
-import { useMouse } from '../../hooks/useMouse';
-import { SITE_META, DISCIPLINES } from '../../data/content';
+import { useRef } from 'react';
+import { useMouse } from '@/hooks/useMouse';
+import { SITE, DISCIPLINES } from '@/data/projects';
 import KineticBackground from './KineticBackground';
 import Portrait from './Portrait';
 import styles from './HeroCover.module.css';
@@ -34,7 +29,7 @@ export default function HeroCover() {
         {/* Left vertical strip */}
         <aside className={styles.leftStrip}>
           <div className={styles.stripLine} />
-          <span className={styles.stripText}>Parsons — {SITE_META.year}</span>
+          <span className={styles.stripText}>{SITE.school} — {SITE.year}</span>
           <div className={styles.stripLine} />
         </aside>
 
@@ -42,16 +37,16 @@ export default function HeroCover() {
         <aside className={styles.rightStrip}>
           <span className={styles.issueNum}>01</span>
           <div className={styles.issueMeta}>
-            Vol. I — {SITE_META.year}<br />
-            {SITE_META.program}<br />
-            {SITE_META.location}
+            {SITE.volume} — {SITE.year}<br />
+            {SITE.role}<br />
+            {SITE.location}
           </div>
         </aside>
 
         {/* Bottom centre: name + discipline tags */}
         <div className={styles.bottomCentre}>
           <p className={styles.nameTag}>
-            {SITE_META.name} — {SITE_META.program}
+            {SITE.name} — {SITE.role}
           </p>
           <div className={styles.disciplines}>
             {DISCIPLINES.map((d, i) => (
@@ -77,10 +72,10 @@ export default function HeroCover() {
         </div>
 
         {/* Availability badge — top-right under nav */}
-        {SITE_META.available && (
+        {SITE.availability && (
           <div className={styles.availBadge}>
             <span className={styles.availDot} />
-            Available for {SITE_META.availableFor}
+            {SITE.availability}
           </div>
         )}
       </div>

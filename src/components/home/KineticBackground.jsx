@@ -1,11 +1,7 @@
-// components/home/KineticBackground.jsx
-// Renders large editorial words that slowly drift and parallax with mouse.
-// Word positions and content are configured in data/content.js → BG_WORDS.
-
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { BG_WORDS } from '../../data/content';
+import { BG_WORDS } from '@/data/projects';
 import styles from './KineticBackground.module.css';
 
 export default function KineticBackground({ mouseX = 0.5, mouseY = 0.5 }) {
@@ -21,7 +17,6 @@ export default function KineticBackground({ mouseX = 0.5, mouseY = 0.5 }) {
   const rafRef = useRef(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
 
-  // Keep mouseRef in sync without triggering re-renders
   useEffect(() => {
     mouseRef.current = { x: mouseX, y: mouseY };
   }, [mouseX, mouseY]);
@@ -33,18 +28,16 @@ export default function KineticBackground({ mouseX = 0.5, mouseY = 0.5 }) {
         const el = wordRefs.current[i];
         if (!el) return;
 
-        // Slow autonomous drift
         s.tx += s.vx;
         s.ty += s.vy;
         if (Math.abs(s.tx) > 10) s.vx *= -1;
         if (Math.abs(s.ty) > 7)  s.vy *= -1;
 
-        // Parallax offset based on mouse (words move opposite to cursor)
         const px = (0.5 - mouseRef.current.x) * 14;
         const py = (0.5 - mouseRef.current.y) * 9;
 
         el.style.transform = `
-          rotate(${word.r + s.tx * 0.05}deg)
+          rotate(${word.rotate + s.tx * 0.05}deg)
           translate(${s.tx + px}px, ${s.ty + py}px)
         `;
       });
@@ -60,18 +53,18 @@ export default function KineticBackground({ mouseX = 0.5, mouseY = 0.5 }) {
     <div className={styles.layer} aria-hidden="true">
       {BG_WORDS.map((word, i) => (
         <span
-          key={word.t + i}
+          key={word.text + i}
           ref={(el) => (wordRefs.current[i] = el)}
           className={styles.word}
           style={{
-            fontSize:  `${word.s}px`,
+            fontSize:  `${word.size}px`,
             left:      `${word.x}%`,
             top:       `${word.y}%`,
-            opacity:   word.o,
-            transform: `rotate(${word.r}deg)`,
+            opacity:   word.opacity,
+            transform: `rotate(${word.rotate}deg)`,
           }}
         >
-          {word.t}
+          {word.text}
         </span>
       ))}
     </div>
