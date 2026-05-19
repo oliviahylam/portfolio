@@ -14,11 +14,9 @@
 }
 
 .logo {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 0.12em;
   color: var(--ink);
 }
 

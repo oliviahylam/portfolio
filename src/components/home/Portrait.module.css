@@ -1,9 +1,7 @@
-/* components/home/Portrait.module.css */
-
 .stage {
   position: absolute;
   inset: 0;
-  z-index: 10;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,40 +10,40 @@
 
 .ringOuter {
   position: absolute;
-  width: 310px;
-  height: 310px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
-  border: 0.5px solid rgba(14, 13, 11, 0.08);
+  border: 0.5px solid rgba(240, 236, 224, 0.06);
 }
 
 .ringInner {
   position: absolute;
-  width: 268px;
-  height: 268px;
+  width: 274px;
+  height: 274px;
   border-radius: 50%;
-  border: 0.5px solid rgba(14, 13, 11, 0.06);
+  border: 0.5px solid rgba(240, 236, 224, 0.04);
 }
 
 .disc {
   position: absolute;
-  width: 240px;
-  height: 240px;
+  width: 244px;
+  height: 244px;
   border-radius: 50%;
-  background: #e8e3d8;
+  background: #191714;
   will-change: transform;
 }
 
 .svg {
   position: relative;
   z-index: 2;
-  width: 200px;
-  height: 200px;
+  width: 210px;
+  height: 210px;
   will-change: transform;
 }
 
 @media (max-width: 560px) {
   .ringOuter { width: 240px; height: 240px; }
-  .ringInner { width: 208px; height: 208px; }
-  .disc       { width: 185px; height: 185px; }
-  .svg        { width: 155px; height: 155px; }
+  .ringInner { width: 206px; height: 206px; }
+  .disc       { width: 184px; height: 184px; }
+  .svg        { width: 158px; height: 158px; }
 }
