@@ -7,14 +7,15 @@
 //    2. home       → "Accept my day"
 //    3. evening    → pick an option, "Confirm"
 //    4. schedule   → "Done" returns home
-//  The tab bar jumps between Home and Choices; Inventory and
-//  Permit have no wireframes yet, so they show a notice.
+//  The tab bar jumps between Home and Choices. Inventory opens
+//  the Archive Scanner in a new tab; Permit has no wireframe
+//  yet, so it shows a notice.
 // ============================================================
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GlowRing, Check, ChoicesIcon, InventoryIcon, PermitIcon } from "./Icons";
 import {
-  CITIZEN_ID, ONBOARDING, TODAY, EVENING, SCHEDULE,
+  CITIZEN_ID, ONBOARDING, TODAY, EVENING, SCHEDULE, SCANNER_URL,
 } from "@/data/termsOfLiving";
 import styles from "./TermsOfLiving.module.css";
 
@@ -44,7 +45,7 @@ export default function TermsOfLiving() {
   const onTab = (tab) => {
     if (tab === "home")    return setScreen("home");
     if (tab === "choices") return setScreen("evening");
-    showToast(`${tab === "inventory" ? "Inventory" : "Permit"} isn't in the wireframes yet`);
+    showToast("Permit isn't in the wireframes yet");
   };
 
   const eveningTitle = EVENING.options.find((o) => o.id === evening)?.title;
@@ -257,25 +258,37 @@ function PillButton({ children, onClick }) {
 const TABS = [
   { id: "home",      label: "Home",      icon: <GlowRing size={23} /> },
   { id: "choices",   label: "Choices",   icon: <ChoicesIcon /> },
-  { id: "inventory", label: "Inventory", icon: <InventoryIcon /> },
+  { id: "inventory", label: "Inventory", icon: <InventoryIcon />, href: SCANNER_URL },
   { id: "permit",    label: "Permit",    icon: <PermitIcon /> },
 ];
 
 function TabBar({ active, onTab }) {
   return (
     <nav className={styles.tabBar} aria-label="Primary">
-      {TABS.map((tab) => (
-        <button
-          key={tab.id}
-          type="button"
-          className={styles.tab}
-          aria-current={active === tab.id ? "page" : undefined}
-          onClick={() => onTab(tab.id)}
-        >
-          <span className={styles.tabIcon}>{tab.icon}</span>
-          <span>{tab.label}</span>
-        </button>
-      ))}
+      {TABS.map((tab) => {
+        const content = (
+          <>
+            <span className={styles.tabIcon}>{tab.icon}</span>
+            <span>{tab.label}</span>
+          </>
+        );
+        // Inventory is the separate Archive Scanner app
+        return tab.href ? (
+          <a key={tab.id} className={styles.tab} href={tab.href} target="_blank" rel="noreferrer">
+            {content}
+          </a>
+        ) : (
+          <button
+            key={tab.id}
+            type="button"
+            className={styles.tab}
+            aria-current={active === tab.id ? "page" : undefined}
+            onClick={() => onTab(tab.id)}
+          >
+            {content}
+          </button>
+        );
+      })}
     </nav>
   );
 }

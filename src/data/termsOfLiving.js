@@ -6,6 +6,9 @@
 
 export const CITIZEN_ID = "046-0314-2291";
 
+// The Inventory tab opens the Archive Scanner (oliviahylam/archive-scanner).
+export const SCANNER_URL = "https://archive-scanner.vercel.app";
+
 export const ONBOARDING = {
   title:    "Your life is ready",
   subtitle: "We have prepared 2,118 choices for you this week.",
